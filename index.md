@@ -2,6 +2,6 @@
 layout: index
 ---
 
-# Cluster raspberrypi
+## Cluster raspberrypi
 
 ![Comenzamos...](img/01.jpg)
