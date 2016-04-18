@@ -2,4 +2,6 @@
 layout: index
 ---
 
-### Prueba
+# Cluster raspberrypi
+
+![Comenzamos...](img/01.jpg)
