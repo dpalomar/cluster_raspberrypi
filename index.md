@@ -12,7 +12,7 @@ En esta página web vamos a documentar los procesos que vayamos realizando en la
 
 * Introducción
 * Montaje físico del cluster
-* Configuración incial del sistema operativo
+* [Configuración inicial del sistema operativo](instalacion)
 * Proyecto 1: Cluster de alta disponibilidad
 * Proyecto 2: Cluster de contenedores docker con docker swarm
 * Proyecto 3: Cluster de contenedores docker con Kubernete
