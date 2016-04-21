@@ -40,8 +40,9 @@ do
 			;;
 		
                 *)
-			echo -e "Debe introducir el dispositivo donde se encuentra la tarjeta SD\n \ 
-, el número de tarjetas SD y un directorio de montaje"
+			echo -e "Debe introducir el dispositivo donde \
+se encuentra la tarjeta SD\n el número de tarjetas SD y un directorio \
+de montaje"
 			exit 1
 			;;
 	esac
