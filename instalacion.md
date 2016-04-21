@@ -83,7 +83,8 @@ while ((contador < $NM))
                  cp ./interfaces $PTH/etc/network/interfaces 
 		 sed -i "s/:/$ip/" $PTH/etc/network/interfaces
                  #rm -rf $PTH/etc/systemd/system/dhcpcd*
-		 find $PTH/etc/systemd/system/ -iname "*dhcpcd*" -exec rm {} \;
+		 find $PTH/etc/systemd/system/ -iname "*dhcpcd*" \
+                 -exec rm {} \; 2> /dev/null
 		 ((ip++))
 		 echo -e "Desmontando"
                  umount /dev/$DISP$magic > /dev/null
