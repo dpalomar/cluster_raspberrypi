@@ -11,7 +11,7 @@ En esta página web vamos a documentar los procesos que vayamos realizando en la
 ## Índice
 
 * Introducción
-* Montaje físico del cluster
+* [Montaje físico del cluster](hardware)
 * [Configuración inicial del sistema operativo](instalacion)
 * Proyecto 1: Cluster de alta disponibilidad
 * Proyecto 2: Cluster de contenedores docker con docker swarm
