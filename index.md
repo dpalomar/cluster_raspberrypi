@@ -15,6 +15,7 @@ En esta página web vamos a documentar los procesos que vayamos realizando en la
 * [Configuración inicial del sistema operativo](instalacion)
 * Proyecto 1: Cluster de contenedores docker con docker swarm
 	* [¿Qué es docker swarm?](swarm)
+	* Creación de un cluster Docker Swarm con docker-machine
 * Proyecto 2: Cluster de contenedores docker con Kubernete
 
 ## Enlaces interesantes
