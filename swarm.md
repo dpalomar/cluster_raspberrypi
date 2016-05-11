@@ -29,7 +29,7 @@ docker-machine utiliza distintos drivers que nos permite crear y configurar dock
 
 También podemos utilizar un driver genérico que nos permite manejar máquinas que ya están creadas (físicas o virtuales) y configurarlas por SSH. Al utilizar este driver se ejecutarán las siguientes tareas:
 
-* Si la máuina no tiene insitala docker, lo instalará y lo configurará.
+* Si la máquina no tiene instalado docker, lo instalará y lo configurará.
 * Actualiza todos los paquetes de la máquina.
 * Genera los certificados TLS para la comunicación segura.
 * Reiniciará el docker engine, por lo tanto si tuviéramos contenedores, estos serán detenidos.
