@@ -23,7 +23,7 @@ Tenemos dos formas de crear nuestro cluster:
 
 ### Creación de un cluster Docker Swarm con docker-machine
 
-docker-machine es una herramienta que nos ayuda a crear, configurar y manejar máquinas (virtuales o físicas) con docker engine. Con docker-engine podemos iniciar, parar o reiniciar los nodos docker, actualizar el cliente o el demonio docker y configurar el cliente docker para acceder a los distintos docker engine.
+docker-machine es una herramienta que nos ayuda a crear, configurar y manejar máquinas (virtuales o físicas) con docker engine. Con docker-machine podemos iniciar, parar o reiniciar los nodos docker, actualizar el cliente o el demonio docker y configurar el cliente docker para acceder a los distintos docker engine.
 
 docker-machine utiliza distintos drivers que nos permite crear y configurar docker engine en distintos entornos y proveedores, por ejemplo virtualbox, AWS, VMWare, ... 
 
