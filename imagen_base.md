@@ -116,7 +116,7 @@ Instalamos los paquetes con:
       ```bash
       # kpartx -a /dev/loop0
       ```
-      Si ejecutamos "lsblk" veremos como ya aparecen las 2 nuevas aprticiones en el sistema:
+      Si ejecutamos "lsblk" veremos como ya aparecen las 2 nuevas particiones en el sistema:
      
       ```bash
       # lsblk /dev/loop0
