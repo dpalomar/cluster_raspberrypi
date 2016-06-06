@@ -14,7 +14,7 @@ En esta página web vamos a documentar los procesos que vayamos realizando en la
 * [Montaje físico del cluster](hardware)
 * Configuración inicial del sistema operativo
   * [Creación de una imagen base de Arch Linux ARM](imagen_base)
-  * Preparacion de una imagen base para despliegue rápido con Ansible
+  * Imagen base para despliegue rápido con Ansible
   * Despliegue de la imagen base en las distintas máquinas
     * [Manual](instalacion)
     * [Automatizada](script)
