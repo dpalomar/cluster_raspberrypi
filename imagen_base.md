@@ -4,29 +4,29 @@ layout: index
 
 ## Creación de una imagen base de Arch Linux ARM para Raspberry Pi.
 
-El primer paso para crear nuestro cluster es instalarles un sistema operativo. En nuestro caso hemos elegido finalmente Arch Linux en su versión ARM.  El motivo de nuestra elección es que Arch Linux contiene Docker-Engine en sus repositorios oficiales, loq ue nos facilita la tarea inicialmente.  Tambien podemos incluir entre las ventajas (con algún inconveniente) su carácter Rolling Release, con lo cual podremos obtener facilmente las ultimas versiones del software que usaremos. Esto es una ventaja en el caso de Docker, ya que es un software en constante evolución.
+El primer paso para crear nuestro cluster es instalarles un sistema operativo. En nuestro caso hemos elegido finalmente Arch Linux en su versión ARM.  El motivo de nuestra elección es que Arch Linux contiene Docker-Engine en sus repositorios oficiales, lo que nos facilita la tarea inicialmente.  Tambien podemos incluir entre las ventajas (con algún inconveniente) su carácter Rolling Release, con lo cual podremos obtener facilmente las ultimas versiones del software que usaremos. En el caso de Docker es una gran ventaja, ya que es un software en constante evolución.
 
 
 ### Preparación del sistema para la creación de la imagen.
 
 Todas las operaciones que vamos a realizar en este proyecto se van a realizar desde Debian 8.0 "Jessie", exceptuando aquellas que afecten directamente a los dispositivos Raspberry.
 
-Instalación de los paquetes necesarios:
+__Instalación de los paquetes necesarios__:
 
 El primer paso que vamos a realizar en preparar Debian para poder preparar la imagen de Arch Linux. Vamos a necesitar 3 paquetes:
   
-* curl: Para bajar la imagen en cli (opcional)
-* bsdtar: Este paquete lo usaremos para descomprimir el fichero con el SO. Es el recomendado por Arch Linux en su guía oficial para descomprimir conservando las propiedades de los ficheros.
+* __curl:__ Para bajar la imagen en cli (opcional)
+* __bsdtar:__ Este paquete lo usaremos para descomprimir el fichero con el SO. Es el recomendado por Arch Linux en su guía oficial para descomprimir conservando las propiedades de los ficheros.
 Instalamos los paquetes con:
-* kpartx: Lo usaremos para mapear las particiones que contiene la imagen de Arch Linux una vez creada.
+* __kpartx:__ Lo usaremos para mapear las particiones que contiene la imagen de Arch Linux una vez creada.
 
 ```bash
 # apt-get update; apt-get install curl bsdtar kpartx
 ```
 
-1. Descarga de la ultima version de Arch Linux para nuestras Raspberry Pis: 
+1. Descarga de la última version de Arch Linux para nuestras Raspberry Pis: 
 
-   Aunque la Raspberry Pi 3 tiene una arquitectura ARM a 64 bits Cortex A-54, aún no se han desarrollado versiones del SO para dicha arquitectura, por lo que usaremos la version de 32 bits disponible para la Raspberry Pi 2, que es completamente compatible:
+   Aunque la Raspberry Pi 3 tiene una arquitectura ARM a 64 bits Cortex A-54, aún no se han desarrollado versiones del SO para dicha arquitectura, por lo que usaremos la versión de 32 bits disponible para la Raspberry Pi 2, que es completamente compatible:
 
    Podemos descargar la imagen desde "http://nl2.mirror.archlinuxarm.org/os/ArchLinuxARM-rpi-2-latest.tar.gz" con curl con el siguiente comando:
 
@@ -43,7 +43,7 @@ Instalamos los paquetes con:
 2. Creación del fichero de bloques:
 
    Como comentabamos anteriormente, vamos a crear un fichero que usaremos como dispositivo de bloques, en el cual volcaremos los datos del fichero descargado anteriormente.
-   Esta en los siguientes pasos:
+   Debemos seguir los siguientes pasos:
 
    1. El primer paso será crear el fichero con dd (duplicate disk)
 
@@ -157,7 +157,7 @@ Instalamos los paquetes con:
 
    5. Quinto paso, montaje de los sistemas de ficheros:
     
-      Ya casi hemos terminado la cración de la imagen base. En estos momentos crearemos dos directorios donde montaremos los dos sistemas de ficheros que acabamos de crear.
+      Ya casi hemos terminado la creación de la imagen base. En estos momentos crearemos dos directorios donde montaremos los dos sistemas de ficheros que acabamos de crear.
       en mi caso particular los voy a montar en los directorios "boot" y "root" que crearé en el directorio "/mnt" de mi sistema
 
       Creacion de los directorios:
@@ -201,7 +201,9 @@ Instalamos los paquetes con:
       # sync
       # umount /dev/mapper/loop0p{1,2}
       # losetup -d /dev/loop0
+      # rmdir /mnt/root /mnt/boot
       ```
 
 
-Una vez finalizado el sexto paso obtendremos una imagen base de Arch Linux lista para cargar en nuestras Raspberry Pis
+Una vez finalizado el sexto paso obtendremos una imagen base de Arch Linux lista para cargar en nuestras Raspberry Pis.  
+Podremos ver como hacerlo en el siguiente apartado de nuestro proyecto [Despliegue de la imagen base en las distintas máquinas](instalacion)
