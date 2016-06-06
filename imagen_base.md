@@ -24,7 +24,7 @@ Instalamos los paquetes con:
 # apt-get update; apt-get install curl bsdtar kpartx
 ```
 
-1. Descarga de la ultima version de Arch Linux para nuestras Raspberris: 
+1. Descarga de la ultima version de Arch Linux para nuestras Raspberry Pis: 
 
    Aunque la Raspberry Pi 3 tiene una arquitectura ARM a 64 bits Cortex A-54, aún no se han desarrollado versiones del SO para dicha arquitectura, por lo que usaremos la version de 32 bits disponible para la Raspberry Pi 2, que es completamente compatible:
 
@@ -204,42 +204,4 @@ Instalamos los paquetes con:
       ```
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-### Creación de un script de despliegue:
-
-
-
-* parted (En una r): Lo usaremos para averiguar el offset de las particiones de la imagen que creamos y montarlas. Debido a que la arquitectura ARM no dispone del paquete "multipath-tools" no podremos usar kpartx para mapear las particiones de la imagen.
-
+Una vez finalizado el sexto paso obtendremos una imagen base de Arch Linux lista para cargar en nuestras Raspberry Pis
