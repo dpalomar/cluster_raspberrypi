@@ -206,4 +206,5 @@ Instalamos los paquetes con:
 
 
 Una vez finalizado el sexto paso obtendremos una imagen base de Arch Linux lista para cargar en nuestras Raspberry Pis.  
-Podremos ver como hacerlo en el siguiente apartado de nuestro proyecto [Despliegue de la imagen base en las distintas máquinas](instalacion)
+Podremos ver como hacerlo en el siguiente apartado de nuestro proyecto:  
+[Despliegue de la imagen base en las distintas máquinas](instalacion)
