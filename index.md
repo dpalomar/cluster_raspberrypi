@@ -12,7 +12,9 @@ En esta página web vamos a documentar los procesos que vayamos realizando en la
 
 * Introducción
 * [Montaje físico del cluster](hardware)
-* [Configuración inicial del sistema operativo](instalacion)
+* Configuración inicial del sistema operativo
+    * [Creación de una imagen base de Arch Linux ARM](imagen_base)
+    * [Despliegue de la imagen base en las distintas máquinas](instalacion)
 * Proyecto 1: Cluster de contenedores docker con docker swarm
 	* [¿Qué es docker swarm?](swarm)
 	* Creación de un cluster Docker Swarm con docker-machine

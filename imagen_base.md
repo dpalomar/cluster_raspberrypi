@@ -2,12 +2,12 @@
 layout: index
 ---
 
-## Instalación del SO en las Raspberry Pi.
+## Creación de una imagen base de Arch Linux ARM para Raspberry Pi.
 
 El primer paso para crear nuestro cluster es instalarles un sistema operativo. En nuestro caso hemos elegido finalmente Arch Linux en su versión ARM.  El motivo de nuestra elección es que Arch Linux contiene Docker-Engine en sus repositorios oficiales, loq ue nos facilita la tarea inicialmente.  Tambien podemos incluir entre las ventajas (con algún inconveniente) su carácter Rolling Release, con lo cual podremos obtener facilmente las ultimas versiones del software que usaremos. Esto es una ventaja en el caso de Docker, ya que es un software en constante evolución.
 
 
-### Preparación del sistema para el despliegue.
+### Preparación del sistema para la creaciónd e la imagen.
 
 Todas las operaciones que vamos a realizar en este proyecto se van a realizar desde Debian 8.0 "Jessie", exceptuando aquellas que afecten directamente a los dispositivos Raspberry.
 
