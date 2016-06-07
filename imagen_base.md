@@ -32,11 +32,11 @@ Instalamos los paquetes con:
    Podemos descargar la imagen con curl con el siguiente comando:
 
    
-      # curl 'http://nl2.mirror.archlinuxarm.org/os/ArchLinuxARM-rpi-2-latest.tar.gz' \
-        > -o 'ArchLinuxARM-rpi-2-latest.tar.gz'
-          % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                         Dload  Upload   Total   Spent    Left  Speed
-        100  281M  100  281M    0     0  1183k      0  0:04:03  0:04:03 --:--:-- 1222k
+         # curl 'http://nl2.mirror.archlinuxarm.org/os/ArchLinuxARM-rpi-2-latest.tar.gz' \
+           > -o 'ArchLinuxARM-rpi-2-latest.tar.gz'
+             % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                            Dload  Upload   Total   Spent    Left  Speed
+           100  281M  100  281M    0     0  1183k      0  0:04:03  0:04:03 --:--:-- 1222k
    
 
    En estos momentos tenemos en nuestro poder un fichero comprimido que contiene el sistema operativo. El siguiente paso es crear un fichero que convertiremos en un dispositivo de bloques, en el cual volcaremos la informacion del tar.gz
@@ -54,15 +54,14 @@ Instalamos los paquetes con:
 
    Para ello ejecutamos:
 
-      ```bash
-      # losetup -f arch-image.img
-      ```
+   
+         # losetup -f arch-image.img
+   
       La opción -f buscará el primer dispositivo loop disponible y cargará el fichero arch-image en dicho dispositivo, podemos comprobarlo con el comando "losetup -a":
    
-      ```bash
-      # losetup -a
-        /dev/loop0: [65025]:537381029 (/arch-image.img)
-      ```
+         # losetup -a
+            /dev/loop0: [65025]:537381029 (/arch-image.img)
+      
 
    * El tercer paso es particionar el fichero mediante su asignación lógica (/dev/loop0), utilizaré para ello fdisk que es la utilidad que viene por defecto en el sistema.  
       Es muy importante que la partición de arranque esté etiquetada como "W95 FAT32 (LBA)", la otra puede quedarse como tipo "Linux".
