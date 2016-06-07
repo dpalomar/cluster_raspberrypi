@@ -13,7 +13,7 @@ Todas las operaciones que vamos a realizar en este proyecto se van a realizar de
 
 __Instalación de los paquetes necesarios__:
 
-En primer lugar vamos a configurar Debian de manera adecuada para poder preparar  la imagen de Arch Linux. Vamos a necesitar 3 paquetes:
+En primer lugar vamos a configurar Debian de manera adecuada para poder preparar  la imagen de Arch Linux. Vamos a necesitar tres paquetes:
   
 * __curl:__ Para bajar la imagen en cli (opcional)
 * __bsdtar:__ Este paquete lo usaremos para descomprimir el fichero con el SO. Es el recomendado por Arch Linux en su guía oficial para descomprimir conservando las propiedades de los ficheros.
@@ -21,14 +21,15 @@ En primer lugar vamos a configurar Debian de manera adecuada para poder preparar
 
 Instalamos los paquetes con:
 
-      # apt-get update; apt-get install curl bsdtar kpartx
-
+```bash
+# apt-get update; apt-get install curl bsdtar kpartx
+```
 
 1. Descarga de la última version de Arch Linux para nuestras Raspberry Pis: 
 
    Aunque la Raspberry Pi 3 tiene una arquitectura ARM a 64 bits Cortex A-54, aún no se han desarrollado versiones del SO para dicha arquitectura, por lo que usaremos la versión de 32 bits disponible para la Raspberry Pi 2, que es completamente compatible:
 
-   Podemos descargar la imagen desde "http://nl2.mirror.archlinuxarm.org/os/ArchLinuxARM-rpi-2-latest.tar.gz" con curl con el siguiente comando:
+   Podemos descargar la imagen con curl con el siguiente comando:
 
    ```bash
    # curl 'http://nl2.mirror.archlinuxarm.org/os/ArchLinuxARM-rpi-2-latest.tar.gz' \
@@ -38,14 +39,13 @@ Instalamos los paquetes con:
      100  281M  100  281M    0     0  1183k      0  0:04:03  0:04:03 --:--:-- 1222k
    ```
 
-   En estos momentos tenemos en nuestro poder un fichero comprimido que contiene el sistema operativo.  El siguiente paso es crear un fichero que convertiremos en un dispositivo de bloques, en el cual volcaremos la informacion del tar.gz
+   En estos momentos tenemos en nuestro poder un fichero comprimido que contiene el sistema operativo. El siguiente paso es crear un fichero que convertiremos en un dispositivo de bloques, en el cual volcaremos la informacion del tar.gz
 
 2. Creación del fichero de bloques:
 
-   Como comentabamos anteriormente, vamos a crear un fichero que usaremos como dispositivo de bloques, en el cual volcaremos los datos del fichero descargado anteriormente.
    Debemos seguir los siguientes pasos:
 
-   1. El primer paso será crear el fichero con dd (duplicate disk)
+   * El primer paso será crear el fichero con dd (duplicate disk)
 
       ```bash
       # dd if=/dev/zero of=arch-image.img bs=1M count=1024
@@ -55,19 +55,19 @@ Instalamos los paquetes con:
       ```
       Con esto ya tendríamos nuestro fichero de 1,1 GB creado (he cometido un pequeño error de cálculo, realmente el count debería ser de 1000 registros para obtener un gigabyte)
 
-   2. El segundo paso es asignar lógicamente el fichero como un dispositivo de bloques "loop". Podemos conseguir este objetivo con losetup:
+   * El segundo paso es asignar lógicamente el fichero como un dispositivo de bloques "loop". Para ello ejecutamos:
 
       ```bash
       # losetup -f arch-image.img
       ```
-      La opción -f buscará el primer dispositivo loop disponible y cargará el fichero arch-image en dicho dispositivo, podemos comprobarlo con el comando "losetup -a"
+      La opción -f buscará el primer dispositivo loop disponible y cargará el fichero arch-image en dicho dispositivo, podemos comprobarlo con el comando "losetup -a":
    
       ```bash
       # losetup -a
         /dev/loop0: [65025]:537381029 (/arch-image.img)
       ```
 
-   3. El tercer paso es particionar el fichero mediante su asignación lógica (/dev/loop0), utilizaré para ello fdisk que es la utilidad que viene por defecto en el sistema.  
+   * El tercer paso es particionar el fichero mediante su asignación lógica (/dev/loop0), utilizaré para ello fdisk que es la utilidad que viene por defecto en el sistema.  
       Es muy importante que la partición de arranque esté etiquetada como "W95 FAT32 (LBA)", la otra puede quedarse como tipo "Linux".
       
       ```bash
@@ -79,7 +79,10 @@ Instalamos los paquetes con:
       
       El dispositivo no contiene una tabla de particiones reconocida.
       Created a new DOS disklabel with disk identifier 0x5a250c16.
-      
+      ```
+      Creamos una nueva partición 1 de tipo 'Linux' y de tamaño 100 MiB:
+
+      ```bash
       Orden (m para obtener ayuda): n
       Tipo de partición
          p   primaria (0 primarias, 0 extendidas, 4 libres)
@@ -88,15 +91,17 @@ Instalamos los paquetes con:
       Número de partición (1-4, valor predeterminado 1): 1
       Primer sector (2048-2097151, valor predeterminado 2048): 2048
       Último sector, +sectores o +tamaño{K,M,G,T,P} (2048-2097151, valor predeterminado 2097151): +100M
-      
-      Crea una nueva partición 1 de tipo 'Linux' y de tamaño 100 MiB.
+           
       
       Orden (m para obtener ayuda): t
       Se ha seleccionado la partición 1
       Código hexadecimal (escriba L para ver todos los códigos): c
       Si ha creado o modificado alguna partición DOS 6.x, consulte la documentación de fdisk para obtener más información.
       Se ha cambiado el tipo de la partición 'Linux' a 'W95 FAT32 (LBA)'.
-      
+      ```
+      Creamos una nueva partición 2 de tipo 'Linux' y de tamaño 923 MiB.
+
+      ```bash
       Orden (m para obtener ayuda): n
       Tipo de partición
          p   primaria (1 primarias, 0 extendidas, 3 libres)
@@ -106,11 +111,11 @@ Instalamos los paquetes con:
       Primer sector (206848-2097151, valor predeterminado 206848): 206848
       Último sector, +sectores o +tamaño{K,M,G,T,P} (206848-2097151, valor predeterminado 2097151): 2097151
       
-      Crea una nueva partición 2 de tipo 'Linux' y de tamaño 923 MiB.
-      
+            
       Orden (m para obtener ayuda): w
       Se ha modificado la tabla de particiones.
       ```
+      
       Ahora tenemos nuestro fichero arch-image.img particionado, para terminar, mapearemos dichas particiones con kpartx:
      
       ```bash
@@ -126,18 +131,19 @@ Instalamos los paquetes con:
       └─loop0p2 254:3    0  923M  0 part
       ``` 
 
-   4. Cuarto paso, crear los sistemas de ficheros:
+   * Cuarto paso, crear los sistemas de ficheros:
 
       Este paso es muy importante, puesto que los dispositivos Raspberry Pi necesitan un sistema de ficheros FAT 32 para arrancar, así que ejecutaremos los siguientes comandos:
 
-      "/dev/mapper/loop0p1" (100M /boot):
+      Para crear el sisteme de ficheros en la partición "/dev/mapper/loop0p1" (100M /boot):
       
       ```bash
       # mkfs.vfat /dev/mapper/loop0p1
       mkfs.fat 3.0.27 (2014-11-12)
       unable to get drive geometry, using default 255/63
       ```
-      "/dev/mapper/loop0p2 (923M raiz)":
+      
+      Para crear el sisteme de ficheros en la partición  "/dev/mapper/loop0p2 (923M raiz)":
       
       ```bash
       # mkfs.ext4 /dev/mapper/loop0p2
@@ -155,18 +161,14 @@ Instalamos los paquetes con:
       Escribiendo superbloques y la información contable del sistema de ficheros: hecho
       ```
 
-   5. Quinto paso, montaje de los sistemas de ficheros:
+   * Quinto paso, montaje de los sistemas de ficheros:
     
-      Ya casi hemos terminado la creación de la imagen base. En estos momentos crearemos dos directorios donde montaremos los dos sistemas de ficheros que acabamos de crear.
-      en mi caso particular los voy a montar en los directorios "boot" y "root" que crearé en el directorio "/mnt" de mi sistema
-
-      Creacion de los directorios:
+      Ya casi hemos terminado la creación de la imagen base. En estos momentos crearemos dos directorios donde montaremos los dos sistemas de ficheros que acabamos de crear. Vamos a montar en los directorios "boot" y "root" en el directorio "/mnt" de nuestro sistema:
 
       ```bash
       # mkdir /mnt/boot /mnt/root
       ```
-      Montaje de los mismos:
-
+      
       ```bash
       # mount /dev/mapper/loop0p1 /mnt/boot/
       # mount /dev/mapper/loop0p2 /mnt/root/
@@ -180,7 +182,7 @@ Instalamos los paquetes con:
       /dev/mapper/loop0p2   893M   1,2M  830M   1% /mnt/root
       ```
 
-   6. Sexto paso, carga del sistema operativo en el fichero de imagen:
+   * Sexto paso, carga del sistema operativo en el fichero de imagen:
 
       El sexto es el último paso de la creación de la imagen. En este paso descomprimiremos el archivo "ArchLinuxARM-rpi-2-latest.tar.gz" en nuestro fichero de bloques "arch-image.img".
 
