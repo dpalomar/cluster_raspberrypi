@@ -10,7 +10,7 @@ En esta página web vamos a documentar los procesos que vayamos realizando en la
 
 ## Índice
 
-* Introducción
+* [ntroducción](introduccion)
 * [Montaje físico del cluster](hardware)
 
 Configuración y despliegue manual
