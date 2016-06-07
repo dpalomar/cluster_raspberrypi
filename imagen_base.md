@@ -4,21 +4,22 @@ layout: index
 
 ## Creación de una imagen base de Arch Linux ARM para Raspberry Pi.
 
-El primer paso para crear nuestro cluster es instalarles un sistema operativo. En nuestro caso hemos elegido finalmente Arch Linux en su versión ARM.  El motivo de nuestra elección es que Arch Linux contiene Docker-Engine en sus repositorios oficiales, lo que nos facilita la tarea inicialmente.  Tambien podemos incluir entre las ventajas (con algún inconveniente) su carácter Rolling Release, con lo cual podremos obtener facilmente las ultimas versiones del software que usaremos. En el caso de Docker es una gran ventaja, ya que es un software en constante evolución.
+El primer paso para crear nuestro cluster es instalar un sistema operativo en nuetsras taspberry pi. En nuestro caso hemos elegido finalmente Arch Linux en su versión ARM.  El motivo de nuestra elección es que Arch Linux contiene Docker Engine en sus repositorios oficiales, lo que nos facilita la tarea inicialmente.  Tambien podemos incluir entre las ventajas (con algún inconveniente) su carácter Rolling Release, con lo cual podremos obtener facilmente las ultimas versiones del software que usaremos. En el caso de Docker es una gran ventaja, ya que es un software en constante evolución. Si nos deciidimos a escoger otra distribución GNU/Linux, como por ejemplo, Debian, tendríamos que utilizar repositorios no oficiales o compilar los programas que necesitamos.
 
 
 ### Preparación del sistema para la creación de la imagen.
 
-Todas las operaciones que vamos a realizar en este proyecto se van a realizar desde Debian 8.0 "Jessie", exceptuando aquellas que afecten directamente a los dispositivos Raspberry.
+Todas las operaciones que vamos a realizar en este proyecto se van a realizar desde un ordenador donde tenemos instalado la distribución Debian 8.0 "Jessie", exceptuando aquellas que afecten directamente a los dispositivos Raspberry.
 
 __Instalación de los paquetes necesarios__:
 
-El primer paso que vamos a realizar en preparar Debian para poder preparar la imagen de Arch Linux. Vamos a necesitar 3 paquetes:
+En primer lugar vamos a configurar Debian de manera adecuada para poder preparar  la imagen de Arch Linux. Vamos a necesitar 3 paquetes:
   
 * __curl:__ Para bajar la imagen en cli (opcional)
 * __bsdtar:__ Este paquete lo usaremos para descomprimir el fichero con el SO. Es el recomendado por Arch Linux en su guía oficial para descomprimir conservando las propiedades de los ficheros.
-Instalamos los paquetes con:
 * __kpartx:__ Lo usaremos para mapear las particiones que contiene la imagen de Arch Linux una vez creada.
+
+Instalamos los paquetes con:
 
 ```bash
 # apt-get update; apt-get install curl bsdtar kpartx
