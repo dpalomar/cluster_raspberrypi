@@ -31,24 +31,23 @@ Instalamos los paquetes con:
 
    Podemos descargar la imagen con curl con el siguiente comando:
 
-   ```bash
-   # curl 'http://nl2.mirror.archlinuxarm.org/os/ArchLinuxARM-rpi-2-latest.tar.gz' \
-     > -o 'ArchLinuxARM-rpi-2-latest.tar.gz'
-       % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                      Dload  Upload   Total   Spent    Left  Speed
-     100  281M  100  281M    0     0  1183k      0  0:04:03  0:04:03 --:--:-- 1222k
-   ```
+   
+      # curl 'http://nl2.mirror.archlinuxarm.org/os/ArchLinuxARM-rpi-2-latest.tar.gz' \
+        > -o 'ArchLinuxARM-rpi-2-latest.tar.gz'
+          % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                         Dload  Upload   Total   Spent    Left  Speed
+        100  281M  100  281M    0     0  1183k      0  0:04:03  0:04:03 --:--:-- 1222k
+   
 
    En estos momentos tenemos en nuestro poder un fichero comprimido que contiene el sistema operativo. El siguiente paso es crear un fichero que convertiremos en un dispositivo de bloques, en el cual volcaremos la informacion del tar.gz
 
 2. Creación del fichero de bloques con dd (duplicate disk)
 
-      ```bash
-      # dd if=/dev/zero of=arch-image.img bs=1M count=1024
-        1024+0 registros leídos
-        1024+0 registros escritos
-        1073741824 bytes (1,1 GB) copiados, 1,06868 s, 1,0 GB/s
-      ```
+         # dd if=/dev/zero of=arch-image.img bs=1M count=1024
+           1024+0 registros leídos
+           1024+0 registros escritos
+           1073741824 bytes (1,1 GB) copiados, 1,06868 s, 1,0 GB/s
+      
       Con esto ya tendríamos nuestro fichero de 1,1 GB creado (he cometido un pequeño error de cálculo, realmente el count debería ser de 1000 registros para obtener un gigabyte)
 
 3. Asignamos lógicamente el fichero como un dispositivo de bloques "loop". 
