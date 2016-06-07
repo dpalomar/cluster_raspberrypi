@@ -14,6 +14,7 @@ Es script que vamos a utilizar para la instalación automática en varias raspbe
 * Podemos indicar el número de tarjetas SD que queremos copiar con la misma imagen. Actualmente sólo se puede indicar como máximo 9 dispositivos).
 * Una vez copiada la imagen a la tarjeta SD se realiza una operación de redimencionado de la partición y el sistema de archivo a 32Gb (capacidad de nuestras tarjetas).
 * En cada una de las imágenes que copie en las distintas tarjetas SD, configura el sistema operativo para que cada Raspberr Pi tenga un direccionamiento estático, además en cada copia va cambiando la dirección ip de cada dispositivo. (En nuestro caso hemos utilizado el segmento 172.22.90.0/16, empezando a asignar la dirección 172.22.90.100 al primer dispositivo).
+* Copia el fichero con las claves públicas permitidas para el acceso por ssh (authorized_keys).
 * En cada una de las instalaciones se asigna un nombre del host distinto (clpi1, clpi2, ...)
 
 #### Configuración del direccionamiento estático
@@ -47,6 +48,6 @@ Tenemos que indicar los siguientes parámetros:
 * **-m**: Indicamos un directorio temporal donde se va a montar la imagen para copiar los archivos necesarrios y realizar las configuraciones.
 * **-i**: Indicamos la imagen que vamos a copiar.
 
-Recuerda que en el mismo directorio donde tengamos el script debemos tener el fichero de configuración de red (eth0.network).
+Recuerda que en el mismo directorio donde tengamos el script debemos tener el fichero de configuración de red (eth0.network) y el fichero authorized_keys con las claves públicas.
 
 
