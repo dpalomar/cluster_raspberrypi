@@ -34,11 +34,11 @@ El script copiará este fichero a la tarjeta SD y modificará la dirección IP e
 
 El script lo tenemos que ejecutar como root, y la sintaxis es la siguiente:
 
-		# ./script-despliegue.sh \
-		  -d mmcblk0 \         
-		  -n 4 \
-		  -m /mnt \
-		  -i arch-image.img
+	# ./script-despliegue.sh \
+	  -d mmcblk0 \         
+	  -n 4 \
+	  -m /mnt \
+	  -i arch-image.img
 
 Tenemos que indicar los siguientes parámetros:
 
