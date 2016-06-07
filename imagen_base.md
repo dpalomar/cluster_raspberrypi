@@ -21,9 +21,8 @@ En primer lugar vamos a configurar Debian de manera adecuada para poder preparar
 
 Instalamos los paquetes con:
 
-```bash
-# apt-get update; apt-get install curl bsdtar kpartx
-```
+      # apt-get update; apt-get install curl bsdtar kpartx
+
 
 1. Descarga de la última version de Arch Linux para nuestras Raspberry Pis: 
 
