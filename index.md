@@ -21,7 +21,7 @@ Configuración y despliegue manual
 
 Configuración y despliegue automatizado
 
-* [Despliegue automático de la imagen base en las distintas máquinas](script)
+* [Despliegue automático de la imagen base en las distintas máquinas](automatico)
 
 * Proyecto 1: Cluster de contenedores docker con docker swarm
   * [¿Qué es docker swarm?](swarm)
