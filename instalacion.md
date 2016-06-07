@@ -67,4 +67,4 @@ Esta tarea la realizaremos en 3 pasos:
       ├─mmcblkp1 254:17   0  100M  0 part 
       └─mmcblkp2 254:18   0 29,7G  0 part
 
-  asdasd 
+Ya tenemos lista nuestra tarjeta SD con el sistema operativo. Ahora sólo hay que introducirla en la máquina y encenderla.
