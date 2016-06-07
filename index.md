@@ -26,6 +26,7 @@ Configuración y despliegue automátizada
 * Proyecto 1: Cluster de contenedores docker con docker swarm
 	* [¿Qué es docker swarm?](swarm)
 	* Instalación de Software
+  
     * Docker Engine
     * Docker Swarm
     * Docker Machine
