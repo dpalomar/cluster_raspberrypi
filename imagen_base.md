@@ -63,71 +63,64 @@ Instalamos los paquetes con:
             /dev/loop0: [65025]:537381029 (/arch-image.img)
       
 
-   * El tercer paso es particionar el fichero mediante su asignación lógica (/dev/loop0), utilizaré para ello fdisk que es la utilidad que viene por defecto en el sistema.  
+4. Particionamos el fichero mediante su asignación lógica (/dev/loop0), utilizaré para ello fdisk que es la utilidad que viene por defecto en el sistema.  
       Es muy importante que la partición de arranque esté etiquetada como "W95 FAT32 (LBA)", la otra puede quedarse como tipo "Linux".
       
-      ```bash
-      # fdisk /dev/loop0
-      
-      Bienvenido a fdisk (util-linux 2.25.2).
-      Los cambios solo permanecerán en la memoria, hasta que decida escribirlos.
-      Tenga cuidado antes de utilizar la orden de escritura.
-      
-      El dispositivo no contiene una tabla de particiones reconocida.
-      Created a new DOS disklabel with disk identifier 0x5a250c16.
-      ```
+         # fdisk /dev/loop0
+         
+         Bienvenido a fdisk (util-linux 2.25.2).
+         Los cambios solo permanecerán en la memoria, hasta que decida escribirlos.
+         Tenga cuidado antes de utilizar la orden de escritura.
+         
+         El dispositivo no contiene una tabla de particiones reconocida.
+         Created a new DOS disklabel with disk identifier 0x5a250c16.
+         
       Creamos una nueva partición 1 de tipo 'Linux' y de tamaño 100 MiB:
 
-      ```bash
-      Orden (m para obtener ayuda): n
-      Tipo de partición
-         p   primaria (0 primarias, 0 extendidas, 4 libres)
-         e   extendida (contenedor para particiones lógicas)
-      Seleccionar (valor predeterminado p): p
-      Número de partición (1-4, valor predeterminado 1): 1
-      Primer sector (2048-2097151, valor predeterminado 2048): 2048
-      Último sector, +sectores o +tamaño{K,M,G,T,P} (2048-2097151, valor predeterminado 2097151): +100M
-           
-      
-      Orden (m para obtener ayuda): t
-      Se ha seleccionado la partición 1
-      Código hexadecimal (escriba L para ver todos los códigos): c
-      Si ha creado o modificado alguna partición DOS 6.x, consulte la documentación de fdisk para obtener más información.
-      Se ha cambiado el tipo de la partición 'Linux' a 'W95 FAT32 (LBA)'.
-      ```
+         Orden (m para obtener ayuda): n
+         Tipo de partición
+            p   primaria (0 primarias, 0 extendidas, 4 libres)
+            e   extendida (contenedor para particiones lógicas)
+         Seleccionar (valor predeterminado p): p
+         Número de partición (1-4, valor predeterminado 1): 1
+         Primer sector (2048-2097151, valor predeterminado 2048): 2048
+         Último sector, +sectores o +tamaño{K,M,G,T,P} (2048-2097151, valor predeterminado 2097151): +100M
+              
+         
+         Orden (m para obtener ayuda): t
+         Se ha seleccionado la partición 1
+         Código hexadecimal (escriba L para ver todos los códigos): c
+         Si ha creado o modificado alguna partición DOS 6.x, consulte la documentación de fdisk para obtener más información.
+         Se ha cambiado el tipo de la partición 'Linux' a 'W95 FAT32 (LBA)'.
+     
       Creamos una nueva partición 2 de tipo 'Linux' y de tamaño 923 MiB.
 
-      ```bash
-      Orden (m para obtener ayuda): n
-      Tipo de partición
-         p   primaria (1 primarias, 0 extendidas, 3 libres)
-         e   extendida (contenedor para particiones lógicas)
-      Seleccionar (valor predeterminado p): p
-      Número de partición (2-4, valor predeterminado 2): 2
-      Primer sector (206848-2097151, valor predeterminado 206848): 206848
-      Último sector, +sectores o +tamaño{K,M,G,T,P} (206848-2097151, valor predeterminado 2097151): 2097151
-      
+         Orden (m para obtener ayuda): n
+         Tipo de partición
+            p   primaria (1 primarias, 0 extendidas, 3 libres)
+            e   extendida (contenedor para particiones lógicas)
+         Seleccionar (valor predeterminado p): p
+         Número de partición (2-4, valor predeterminado 2): 2
+         Primer sector (206848-2097151, valor predeterminado 206848): 206848
+         Último sector, +sectores o +tamaño{K,M,G,T,P} (206848-2097151, valor predeterminado 2097151): 2097151
+         
+               
+         Orden (m para obtener ayuda): w
+         Se ha modificado la tabla de particiones.
             
-      Orden (m para obtener ayuda): w
-      Se ha modificado la tabla de particiones.
-      ```
-      
       Ahora tenemos nuestro fichero arch-image.img particionado, para terminar, mapearemos dichas particiones con kpartx:
      
-      ```bash
-      # kpartx -a /dev/loop0
-      ```
+         # kpartx -a /dev/loop0
+      
       Si ejecutamos "lsblk" veremos como ya aparecen las 2 nuevas particiones en el sistema:
      
-      ```bash
-      # lsblk /dev/loop0
-      NAME      MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
-      loop0       7:0    0    1G  0 loop 
-      ├─loop0p1 254:2    0  100M  0 part 
-      └─loop0p2 254:3    0  923M  0 part
-      ``` 
-
-   * Cuarto paso, crear los sistemas de ficheros:
+         # lsblk /dev/loop0
+         NAME      MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+         loop0       7:0    0    1G  0 loop 
+         ├─loop0p1 254:2    0  100M  0 part 
+         └─loop0p2 254:3    0  923M  0 part
+   
+5. Creamos los sistemas de ficheros:
 
       Este paso es muy importante, puesto que los dispositivos Raspberry Pi necesitan un sistema de ficheros FAT 32 para arrancar, así que ejecutaremos los siguientes comandos:
 
