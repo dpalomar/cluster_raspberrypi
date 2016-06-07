@@ -41,11 +41,7 @@ Instalamos los paquetes con:
 
    En estos momentos tenemos en nuestro poder un fichero comprimido que contiene el sistema operativo. El siguiente paso es crear un fichero que convertiremos en un dispositivo de bloques, en el cual volcaremos la informacion del tar.gz
 
-2. Creación del fichero de bloques:
-
-   Debemos seguir los siguientes pasos:
-
-   * El primer paso será crear el fichero con dd (duplicate disk)
+2. Creación del fichero de bloques con dd (duplicate disk)
 
       ```bash
       # dd if=/dev/zero of=arch-image.img bs=1M count=1024
@@ -55,7 +51,9 @@ Instalamos los paquetes con:
       ```
       Con esto ya tendríamos nuestro fichero de 1,1 GB creado (he cometido un pequeño error de cálculo, realmente el count debería ser de 1000 registros para obtener un gigabyte)
 
-   * El segundo paso es asignar lógicamente el fichero como un dispositivo de bloques "loop". Para ello ejecutamos:
+3. Asignamos lógicamente el fichero como un dispositivo de bloques "loop". 
+
+   Para ello ejecutamos:
 
       ```bash
       # losetup -f arch-image.img
