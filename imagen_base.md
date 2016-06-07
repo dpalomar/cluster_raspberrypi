@@ -125,76 +125,63 @@ Instalamos los paquetes con:
       Este paso es muy importante, puesto que los dispositivos Raspberry Pi necesitan un sistema de ficheros FAT 32 para arrancar, así que ejecutaremos los siguientes comandos:
 
       Para crear el sisteme de ficheros en la partición "/dev/mapper/loop0p1" (100M /boot):
-      
-      ```bash
-      # mkfs.vfat /dev/mapper/loop0p1
-      mkfs.fat 3.0.27 (2014-11-12)
-      unable to get drive geometry, using default 255/63
-      ```
-      
+            
+         # mkfs.vfat /dev/mapper/loop0p1
+         mkfs.fat 3.0.27 (2014-11-12)
+         unable to get drive geometry, using default 255/63
+            
       Para crear el sisteme de ficheros en la partición  "/dev/mapper/loop0p2 (923M raiz)":
       
-      ```bash
-      # mkfs.ext4 /dev/mapper/loop0p2
-      mke2fs 1.42.12 (29-Aug-2014)
-      Descartando los bloques del dispositivo: hecho                           
-      Se está creando El sistema de ficheros con 236288 4k bloques y 59136 nodos-i
-      
-      UUID del sistema de ficheros: d882f713-021c-4ab8-82e9-820f0b8749a2
-      Respaldo del superbloque guardado en los bloques: 
-      	32768, 98304, 163840, 229376
-      
-      Reservando las tablas de grupo: hecho                           
-      Escribiendo las tablas de nodos-i: hecho                           
-      Creando el fichero de transacciones (4096 bloques): hecho
-      Escribiendo superbloques y la información contable del sistema de ficheros: hecho
-      ```
+         # mkfs.ext4 /dev/mapper/loop0p2
+         mke2fs 1.42.12 (29-Aug-2014)
+         Descartando los bloques del dispositivo: hecho                           
+         Se está creando El sistema de ficheros con 236288 4k bloques y 59136 nodos-i
+         
+         UUID del sistema de ficheros: d882f713-021c-4ab8-82e9-820f0b8749a2
+         Respaldo del superbloque guardado en los bloques: 
+         	32768, 98304, 163840, 229376
+         
+         Reservando las tablas de grupo: hecho                           
+         Escribiendo las tablas de nodos-i: hecho                           
+         Creando el fichero de transacciones (4096 bloques): hecho
+         Escribiendo superbloques y la información contable del sistema de ficheros: hecho
+   
 
-   * Quinto paso, montaje de los sistemas de ficheros:
+6. Montaje de los sistemas de ficheros:
     
       Ya casi hemos terminado la creación de la imagen base. En estos momentos crearemos dos directorios donde montaremos los dos sistemas de ficheros que acabamos de crear. Vamos a montar en los directorios "boot" y "root" en el directorio "/mnt" de nuestro sistema:
 
-      ```bash
-      # mkdir /mnt/boot /mnt/root
-      ```
+         # mkdir /mnt/boot /mnt/root
+                 
+         # mount /dev/mapper/loop0p1 /mnt/boot/
+         # mount /dev/mapper/loop0p2 /mnt/root/
       
-      ```bash
-      # mount /dev/mapper/loop0p1 /mnt/boot/
-      # mount /dev/mapper/loop0p2 /mnt/root/
-      ```
       Comprobacion del montaje:
 
-      ```bash
-      # df -h
-      S.ficheros          Tamaño Usados  Disp Uso% Montado en
-      /dev/mapper/loop0p1   100M      0  100M   0% /mnt/boot
-      /dev/mapper/loop0p2   893M   1,2M  830M   1% /mnt/root
-      ```
+      
+         # df -h
+         S.ficheros          Tamaño Usados  Disp Uso% Montado en
+         /dev/mapper/loop0p1   100M      0  100M   0% /mnt/boot
+         /dev/mapper/loop0p2   893M   1,2M  830M   1% /mnt/root
+   
+7. Copiamos el sistema operativo en el fichero de imagen:
 
-   * Sexto paso, carga del sistema operativo en el fichero de imagen:
-
-      El sexto es el último paso de la creación de la imagen. En este paso descomprimiremos el archivo "ArchLinuxARM-rpi-2-latest.tar.gz" en nuestro fichero de bloques "arch-image.img".
+      En este paso descomprimiremos el archivo "ArchLinuxARM-rpi-2-latest.tar.gz" en nuestro fichero de bloques "arch-image.img".
 
       La comunidad de Arch Linux ARM recomienda usar bsdtar para la descompresión del fichero, ejecutaremos la siguiente orden:
 
-      ```bash
-      # bsdtar -xpf ArchLinuxARM-rpi-2-latest.tar.gz -C /mnt/root/
-      ```
+         # bsdtar -xpf ArchLinuxARM-rpi-2-latest.tar.gz -C /mnt/root/
+      
       Una vez finalizada la descompresión, tendremos que mover el contenido del directorio "/mnt/root/boot" a "/mnt/boot"
 
-      ```bash
-      # mv /mnt/root/boot/* /mnt/boot/
-      ```
-
+         # mv /mnt/root/boot/* /mnt/boot/
+      
       Sincronizamos los dispositivos de bloques para asegurarnos su correcta escritura y desmontamos todo:
 
-      ```bash
-      # sync
-      # umount /dev/mapper/loop0p{1,2}
-      # losetup -d /dev/loop0
-      # rmdir /mnt/root /mnt/boot
-      ```
-
+         # sync
+         # umount /dev/mapper/loop0p{1,2}
+         # losetup -d /dev/loop0
+         # rmdir /mnt/root /mnt/boot
 
 Una vez finalizado el sexto paso obtendremos una imagen base de Arch Linux lista para cargar en nuestras Raspberry Pis.  
 Podremos ver como hacerlo en el siguiente apartado de nuestro proyecto:  
