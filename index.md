@@ -12,23 +12,27 @@ En esta página web vamos a documentar los procesos que vayamos realizando en la
 
 * Introducción
 * [Montaje físico del cluster](hardware)
-* Configuración inicial del sistema operativo
-  * [Creación de una imagen base de Arch Linux ARM](imagen_base)
-  * [Imagen base para  provisionamiento con Ansible](imagen_ansible)
-  * Despliegue de la imagen base en las distintas máquinas
-    * [Manual](instalacion)
-    * [Automatizada](script)
 
-* Instalación de Software
-  * Docker Engine
-  * Docker Swarm
-  * Docker Machine
-  * Automatización
-    * Ansible
+Configuración y despliegue manual
+
+* [Creación de una imagen base de Arch Linux ARM](imagen_base)
+* [Despliegue de la imagen base en las distintas máquinas](instalacion)
+    
+Configuración y despliegue automátizada
+
+
+* [Despliegue automático de la imagen base en las distintas máquinas](script)
 
 * Proyecto 1: Cluster de contenedores docker con docker swarm
 	* [¿Qué es docker swarm?](swarm)
-	* Creación de un cluster Docker Swarm con docker-machine
+	* Instalación de Software
+    * Docker Engine
+    * Docker Swarm
+    * Docker Machine
+
+  * [Imagen base para aprovisionamiento con Ansible](imagen_ansible) 
+
+
 * Proyecto 2: Cluster de contenedores docker con Kubernete
 
 ## Enlaces interesantes
