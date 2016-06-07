@@ -18,15 +18,14 @@ Configuración y despliegue manual
 * [Creación de una imagen base de Arch Linux ARM](imagen_base)
 * [Despliegue de la imagen base en las distintas máquinas](instalacion)
     
-Configuración y despliegue automátizada
 
+Configuración y despliegue automatizado
 
 * [Despliegue automático de la imagen base en las distintas máquinas](script)
 
 * Proyecto 1: Cluster de contenedores docker con docker swarm
-	* [¿Qué es docker swarm?](swarm)
-	* Instalación de Software
-  
+  * [¿Qué es docker swarm?](swarm)
+  * Instalación de Software
     * Docker Engine
     * Docker Swarm
     * Docker Machine
