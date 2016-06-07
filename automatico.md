@@ -8,7 +8,7 @@ En el apartado [Despliegue de la imagen base en las distintas máquinas](instala
 
 ### Script bash para automatizar el despliegue
 
-Es script que vamos a utilizar para la instalación automática en varias raspberry pi lo duedes descargar en el siguiente [enlace](https://raw.githubusercontent.com/iesgn/cluster_raspberrypi/gh-pages/script/script.sh). Veamos las funcionalidades que nos ofrece:
+Es script que vamos a utilizar para la instalación automática en varias raspberry pi lo duedes descargar en el fichero [script-despliegue.sh](https://raw.githubusercontent.com/iesgn/cluster_raspberrypi/gh-pages/script/scipt-despliegue.sh). Veamos las funcionalidades que nos ofrece:
 
 * La función principal del programa es copiar una imagen en una tarjeta SD, por lo tanto tendremos que indicar en el programa el dispositivo donde se encuentra la tarjeta SD y la imagen que queremos copiar.
 * Podemos indicar el número de tarjetas SD que queremos copiar con la misma imagen. Actualmente sólo se puede indicar como máximo 9 dispositivos).
@@ -32,6 +32,21 @@ El script copiará este fichero a la tarjeta SD y modificará la dirección IP e
 
 #### Utilización del script de automatización
 
+El script lo tenemos que ejecutar como root, y la sintaxis es la siguiente:
 
+		# ./script-despliegue.sh \
+		  -d mmcblk0 \         
+		  -n 4 \
+		  -m /mnt \
+		  -i arch-image.img
+
+Tenemos que indicar los siguientes parámetros:
+
+* **-d**: Indicamos el dispositivo asociado a la tarjeta SD.
+* **-n**: Indicamos el número de tarjetas que vamos a copiar.
+* **-m**: Indicamos un directorio temporal donde se va a montar la imagen para copiar los archivos necesarrios y realizar las configuraciones.
+* **-i**: Indicamos la imagen que vamos a copiar.
+
+Recuerda que en el mismo directorio donde tengamos el script debemos tener el fichero de configuración de red (eth0.network).
 
 
