@@ -4,7 +4,7 @@ layout: index
 
 ## Creación de una imagen base de Arch Linux ARM para Raspberry Pi.
 
-El primer paso para crear nuestro cluster es instalar un sistema operativo en nuetsras taspberry pi. En nuestro caso hemos elegido finalmente Arch Linux en su versión ARM.  El motivo de nuestra elección es que Arch Linux contiene Docker Engine en sus repositorios oficiales, lo que nos facilita la tarea inicialmente.  Tambien podemos incluir entre las ventajas (con algún inconveniente) su carácter Rolling Release, con lo cual podremos obtener facilmente las ultimas versiones del software que usaremos. En el caso de Docker es una gran ventaja, ya que es un software en constante evolución. Si nos deciidimos a escoger otra distribución GNU/Linux, como por ejemplo, Debian, tendríamos que utilizar repositorios no oficiales o compilar los programas que necesitamos.
+El primer paso para crear nuestro cluster es instalar un sistema operativo en nuetsras taspberry pi. En nuestro caso hemos elegido finalmente Arch Linux en su versión ARM.  El motivo de nuestra elección es que Arch Linux contiene Docker Engine en sus repositorios oficiales, lo que nos facilita la tarea inicialmente.  Tambien podemos incluir entre las ventajas (con algún inconveniente) su carácter Rolling Release, con lo cual podremos obtener facilmente las ultimas versiones del software que usaremos. En el caso de Docker es una gran ventaja, ya que es un software en constante evolución. Si nos decidimos a escoger otra distribución GNU/Linux, como por ejemplo, Debian, tendríamos que utilizar repositorios no oficiales o compilar los programas que necesitamos.
 
 
 ### Preparación del sistema para la creación de la imagen.
