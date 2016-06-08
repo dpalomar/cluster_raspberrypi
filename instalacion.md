@@ -4,17 +4,16 @@ layout: index
 
 ## Despliegue de la imagen de Arch linux ARM.
 
-En este punto ya tenemos una imagen con el sistema operativo operativa, por lo que vamos a proceder a cargarla en una tarjeta SD para poder usarla con la Raspberry Pi.  
+En este punto ya tenemos una imagen con el sistema operativo preparda como hemos estudiado en el punto: [Creación de una imagen base de Arch Linux ARM para Raspberry Pi](imagen_base), por lo que vamos a proceder a cargarla en una tarjeta SD para poder usarla con la Raspberry Pi.  
 Esta tarea la realizaremos en 3 pasos:
 
-* __Instalacion de paquetes necesarios__ 
+* __Instalación de paquetes necesarios__ 
 * __Carga de la imagen__
 * __Redimensionado de las particiones y sistemas de ficheros__
 
 1. __Instalación del software necesario:__
    
-   En este aprtado usaremos el paquete "parted" que contiene todas las herramientas necesarias para escribir la imagen
-   en la tarjeta SD y redimensionar las particiones.  Podemos instalarlo con el siguiente comando:
+   En este aprtado usaremos el paquete "parted" que contiene todas las herramientas necesarias para escribir la imagen en la tarjeta SD y redimensionar las particiones.  Podemos instalarlo con el siguiente comando:
 
         # apt-get update; apt-get install parted
 
@@ -35,8 +34,7 @@ Esta tarea la realizaremos en 3 pasos:
 
 3. __Redimensionado de particion, sistema de ficheros y comprobación de consistencia:__
 
-  Una vez cargada la imagen en la tarjeta SD procederemos a redimensionar la partición número 2 (/root) lo máximo posible con el objetivo de 
-  aprovechar la capacidad de nuestra tarjeta SD. Para realizar esta tarea usaremos las herramientas "parted" y "resize2fs"
+  Una vez cargada la imagen en la tarjeta SD procederemos a redimensionar la partición número 2 (/root) lo máximo posible con el objetivo de aprovechar la capacidad de nuestra tarjeta SD. Para realizar esta tarea usaremos las herramientas "parted" y "resize2fs"
 
     # parted /dev/mmcblk0 resizepart 2
       End?  [1074MB]? 32GB
