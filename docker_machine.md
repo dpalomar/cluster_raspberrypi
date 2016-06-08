@@ -1,0 +1,6 @@
+---
+layout: index
+---
+
+## Docker Machine
+
