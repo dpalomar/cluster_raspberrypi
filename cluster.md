@@ -4,7 +4,7 @@ layout: index
 
 ## Esquema de nuestro cluster
 
-![docker](img/docker-machine.jpg)
+![docker](img/docker-machine.png)
 
 Para comenzar a construir nuestro cluster, partimos de que tenemos instaladas y configuradas nuestras Raspberry Pi con el sistema operativo. Hemos vistos dos opciones para conseguir este objetivo:
 
