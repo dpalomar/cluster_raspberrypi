@@ -16,3 +16,7 @@ Nuestra infraestrutura va a estar formada por 5 equipos:
 * El **controlador**, puede ser cualquier ordenador, en nuestro caso vamos a utilizar un equipo con Debian 8.0. En este equipo vamos a instalar el cliente docker para interactuar con los [Docker Engine](docker_engine) de cada una de las raspberry pi. En este equipo vamos a controlar las cuatro pi con la herramienta [Docker Machine](docker_machine), que nos va a permitir instalar docker engine en cada una de ellas y gestionarlas.
 * Las cuatro **Raspberry Pi**, donde vamos a instalar Docker Engine por medio de la herramienta Docker Engine, que no va a permitir tambiaén gestionar estas máquinas.
 
+Veamos en primer lugar como configurar el controlador para posteriormente configurar los equipos de nuestro cluster, para ello vamos a instalar las dos herramientas que nos hacen falta:
+
+* [Docker Engine](docker_engine)
+* [Docker Machine](docker_machine)
