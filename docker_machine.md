@@ -58,9 +58,7 @@ Vamos configurar nuestras Raspberry Pi con docker Engine desde el contrlador uti
 Hemos indicado en los parámetros el tipo de driver: generic, la clave privada para acceder por ssh, la dirección IP de la máuina y su nombre. Haŕía que repetir el proceso para cada una de nuestras máquinas:
 
     $ docker-machine create --driver=generic --generic-ssh-key="~/.ssh/id_rsa" --generic-ip-address="172.22.90.101" clpi2
-
     $ docker-machine create --driver=generic --generic-ssh-key="~/.ssh/id_rsa" --generic-ip-address="172.22.90.102" clpi3   
-
     $ docker-machine create --driver=generic --generic-ssh-key="~/.ssh/id_rsa" --generic-ip-address="172.22.90.103" clpi4
 
 
