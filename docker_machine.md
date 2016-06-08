@@ -34,7 +34,11 @@ Y comprobamos la instalación:
 
 Vamos configurar nuestras Raspberry Pi con docker Engine desde el contrlador utilizando docker Machine, para ello ejecutamos la siguiente instrucción para instalar y configurar nuestra primera máquina:
 
-    $ docker-machine create --driver=generic --generic-ssh-key="~/.ssh/id_rsa" --generic-ip-address="172.22.90.100" clpi1   
+    $ docker-machine create /
+    --driver=generic /
+    --generic-ssh-key="~/.ssh/id_rsa" /
+    --generic-ip-address="172.22.90.100" /
+    clpi1   
 
     Running pre-create checks...
     Creating machine...
@@ -59,7 +63,7 @@ Hemos indicado en los parámetros el tipo de driver: generic, la clave privada p
 
     $ docker-machine create --driver=generic --generic-ssh-key="~/.ssh/id_rsa" --generic-ip-address="172.22.90.103" clpi4
 
-    
+
 
 
 
