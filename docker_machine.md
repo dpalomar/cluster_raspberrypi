@@ -73,6 +73,49 @@ Finalmente podemos comprobar que las cuatro máquina estar gestionada por Docker
     clpi3   -        generic   Running   tcp://172.22.90.102:2376           v1.11.2   
     clpi4   -        generic   Running   tcp://172.22.90.103:2376           v1.11.2   
 
+A continuación para conectarnos desde nuestro cliente docker al Docker Engine de cualquiera de nuestras máquinas necesitamos declarar las variables de entornos adecuadas, para obtener las variables de entorno la máuina clpi1 podemos ejecutar:
+
+    $ docker-machine env clpi1
+    export DOCKER_TLS_VERIFY="1"
+    export DOCKER_HOST="tcp://172.22.90.100:2376"
+    export DOCKER_CERT_PATH="/home/debian/.docker/machine/machines/clpi1"
+    export DOCKER_MACHINE_NAME="clpi1"
+
+Y para ejecutar estos comandos y que se creen las variables de entorno, ejecutamos:
+
+    $ eval $(docker-machine env clpi1)
+
+A partir de ahora, y utilizando el cliente docker, estaremos trabajando con el Docker Engine de clpi1:
+
+    $ docker ps
+    CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+
+Evidentemente vemos que no tenemos ningún contenedor en clpi1.
+
+Otras opciones de docker-machine que podemos utilizar son:
+
+* inspect: Nos devuelve información de una máquina.
+* ssh, scp: Nos permite acceder por ssh y copiar ficheros a una determinada máquina.
+* start, stop, restart, status: Podemos controlar una máquina.
+* rm: Es la opción que borra una máquina de la base de datos de Docker Machine. Con determinados drivers también elimina la máquina.
+* upgrade: Actualiza a la última versión de docker la máquina indicada.
+
+Por ejemplo para acceder a la máquina clpi2, podemos ejecutar:
+
+    $ docker-machine ssh clpi2
+    Welcome to Arch Linux ARM   
+
+         Website: http://archlinuxarm.org
+           Forum: http://archlinuxarm.org/forum
+             IRC: #archlinux-arm on irc.Freenode.net
+    Last login: Wed Jun  8 11:10:42 2016 from 172.22.206.15
+    [root@clpi2 ~]# 
+
+Una vez que tenemos nuestras máquinas del cluster preparadas, en la siguiente sección vamos a estudiar como instalar Docker Swarm.
+
+
+
+
 
 
 
