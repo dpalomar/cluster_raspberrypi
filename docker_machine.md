@@ -16,5 +16,21 @@ Nosotros vamos a utilizar un driver genérico (generic) que nos permite manejar 
 * Reiniciará el Docker Engine, por lo tanto si tuviéramos contenedores, estos serán detenidos.
 * Se cambia el nombre de la máquina para que coincida con el que le hemos dado con Docker Machine.
 
-### Utilización de Docker Machine con nuestras Raspberrys Pi
+### Instalación de Docker Machine en el controlador
+
+Como hemos indicado anteriormente vamos a intalar Docker Machine en nuestro controlador para poder configurar los equipos de nuestro cluster. 
+
+Para instalar la última versión (0.7.0) de esta herramienta ejecutamos:
+
+    $ curl -L https://github.com/docker/machine/releases/download/v0.7.0/docker-machine-`uname -s`-`uname -m` > /usr/local/bin/docker-machine && \
+    chmod +x /usr/local/bin/docker-machine
+
+Y comprobamos la instalación:
+
+    $ docker-machine -version
+    docker-machine version 0.7.0, build a650a40
+
+### Configuración de nuestras Raspberrys Pi con Docker Machine
+
+
 
