@@ -34,10 +34,10 @@ Y comprobamos la instalación:
 
 Vamos configurar nuestras Raspberry Pi con docker Engine desde el contrlador utilizando docker Machine, para ello ejecutamos la siguiente instrucción para instalar y configurar nuestra primera máquina:
 
-    $ docker-machine create /
-    --driver=generic /
-    --generic-ssh-key="~/.ssh/id_rsa" /
-    --generic-ip-address="172.22.90.100" /
+    $ docker-machine create \
+    --driver=generic \
+    --generic-ssh-key="~/.ssh/id_rsa" \
+    --generic-ip-address="172.22.90.100" \
     clpi1   
 
     Running pre-create checks...
@@ -57,9 +57,22 @@ Vamos configurar nuestras Raspberry Pi con docker Engine desde el contrlador uti
 
 Hemos indicado en los parámetros el tipo de driver: generic, la clave privada para acceder por ssh, la dirección IP de la máuina y su nombre. Haŕía que repetir el proceso para cada una de nuestras máquinas:
 
-    $ docker-machine create --driver=generic --generic-ssh-key="~/.ssh/id_rsa" --generic-ip-address="172.22.90.101" clpi2
-    $ docker-machine create --driver=generic --generic-ssh-key="~/.ssh/id_rsa" --generic-ip-address="172.22.90.102" clpi3   
-    $ docker-machine create --driver=generic --generic-ssh-key="~/.ssh/id_rsa" --generic-ip-address="172.22.90.103" clpi4
+    $ docker-machine create --driver=generic --generic-ssh-key="~/.ssh/id_rsa" \
+    --generic-ip-address="172.22.90.101" clpi2
+    $ docker-machine create --driver=generic --generic-ssh-key="~/.ssh/id_rsa" \
+    --generic-ip-address="172.22.90.102" clpi3   
+    $ docker-machine create --driver=generic --generic-ssh-key="~/.ssh/id_rsa" \
+    --generic-ip-address="172.22.90.103" clpi4
+
+Finalmente podemos comprobar que las cuatro máquina estar gestionada por Docker Machine:
+
+    $ docker-machine ls
+    NAME    ACTIVE   DRIVER    STATE     URL                        SWARM   DOCKER    ERRORS
+    clpi1   -        generic   Running   tcp://172.22.90.100:2376           v1.11.2   
+    clpi2   -        generic   Running   tcp://172.22.90.101:2376           v1.11.2   
+    clpi3   -        generic   Running   tcp://172.22.90.102:2376           v1.11.2   
+    clpi4   -        generic   Running   tcp://172.22.90.103:2376           v1.11.2   
+
 
 
 
